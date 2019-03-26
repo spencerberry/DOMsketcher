@@ -1,6 +1,7 @@
 body{
   background-color: #1D102F;
   color: #F4EDDB;
+  height: 100%;
   font-family: 'Nunito', sans-serif;
 }
 
@@ -21,47 +22,41 @@ header h1{
   margin: auto;
 }
 
-#box{
-  position: relative;
-  width: 60%;
-  margin: auto;
-}
-
-#box:before{
-  content: '';
-  display: block;
-  padding-top: 100%;
-  background-color: cyan;
-}
-
 #canvas {
   cursor: crosshair;
-  position: absolute;
+  height: 60vw;
+  width: 60vw;
+  margin: 4em auto 0;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
   background-color: #766073;
   display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 100%;
   border: 3px solid #6D758F;
   /* grid-template-columns: repeat(128, 1fr); */
 }
 
 .controls{
   display: grid;
-  grid-template-columns: repeat(80, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   width: 60%;
   margin: 1em auto;
 }
 
 .pixel{
   width: 100%;
+  /* min-height: 20px; */
+  overflow: auto;
+  display: block;
   /*background-color: #F4EDDB;*/
 }
 
-.pixel:hover{
+/* .pixel:hover{
   background-color: gray;
-}
+} */
 
 button{
   appearance: none;
@@ -95,6 +90,7 @@ button:active{
   font-size: 26px;
   padding-top: 4px;
   margin: 0 10px;
+  vertical-align: middle;
 }
 
 .toggle{

@@ -1,8 +1,6 @@
 const WIDTH = 32;
 const HEIGHT = 32;
 
-let mouseDown = false;
-
 const clearButton = document.getElementById('clear');
 
 const shadeToggle = document.getElementById('shade-toggle');
@@ -12,12 +10,15 @@ const colorToggle = document.getElementById('color-toggle');
 let randomColors = colorToggle.control.checked;
 
 const canvas = document.getElementById('canvas');
-canvas.style.gridTemplateColumns = "repeat(" + WIDTH + ", 1fr)";
+canvas.style.gridTemplateColumns = "repeat(" + WIDTH + ", auto)";
+canvas.style.gridTemplateRows = "repeat(" + HEIGHT + ", auto)";
 
 for (let i = 0; i < WIDTH; i++){
   for (let j = 0; j < HEIGHT; j++){
     let square = document.createElement('div');
-    square.className='pixel';
+    square.className = 'pixel';
+    square.style.height = square.style.width;
+    // square.style.backgroundColor = 'Black';
     canvas.appendChild(square);
   }
 }
@@ -34,10 +35,12 @@ pixels.forEach(pixel => pixel.addEventListener('mouseover', pixelHovered));
 // document.addEventListener('mouseup', toggleMouseDown)
 
 function clear(){
-  pixels.forEach(pixel=> pixel.style.background = "none");
+  console.log('clear');
+  pixels.forEach(pixel => pixel.style.background = "none");
 }
 
 function pixelHovered(e){
+  console.log(e);
   if (randomColors){
     let new_color = getRandomColor();
     e.target.style.background = new_color;
@@ -51,20 +54,18 @@ function pixelHovered(e){
     let current_opacity = e.target.style.opacity;
     let new_opacity = String(Math.min(Number(current_opacity) + .2, 1.0));
     e.target.style.opacity = new_opacity;
-    console.log(e.target.style.opacity);
   }
   else{
-    e.target.style.opacity = "";
+    e.target.style.opacity = "1.0";
   }
 
 }
-
 function getRandomColor(){
-  var c = '';
-  while (c.length < 6) {
-    c += (Math.random()).toString(16).substr(-6).substr(-1)
+  var hexColor = '';
+  while (hexColor.length < 6) {
+    hexColor += (Math.random()).toString(16).substr(-6).substr(-1)
   }
-  return '#'+c;
+  return '#' + hexColor;
 }
 
 function toggleColor(e){
@@ -83,9 +84,4 @@ function toggleShade(e){
   else{
     shade = false;
   }
-}
-
-function toggleMouseDown(e){
-  //console.log(e);
-  mouseDown = e.type === 'mousedown';
 }
