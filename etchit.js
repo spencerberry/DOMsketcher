@@ -1,7 +1,7 @@
-const WIDTH = 32;
-const HEIGHT = 32;
+let size = 22;
+let pixels = [];
 
-const clearButton = document.getElementById('clear');
+const resetButton = document.getElementById('reset');
 
 const shadeToggle = document.getElementById('shade-toggle');
 let shade = shadeToggle.control.checked;
@@ -9,38 +9,41 @@ let shade = shadeToggle.control.checked;
 const colorToggle = document.getElementById('color-toggle');
 let randomColors = colorToggle.control.checked;
 
+const sizeField = document.getElementById('size');
+sizeField.value = size;
+
 const canvas = document.getElementById('canvas');
-canvas.style.gridTemplateColumns = "repeat(" + WIDTH + ", auto)";
-canvas.style.gridTemplateRows = "repeat(" + HEIGHT + ", auto)";
+reset();
 
-for (let i = 0; i < WIDTH; i++){
-  for (let j = 0; j < HEIGHT; j++){
-    let square = document.createElement('div');
-    square.className = 'pixel';
-    square.style.height = square.style.width;
-    // square.style.backgroundColor = 'Black';
-    canvas.appendChild(square);
-  }
-}
-
-clearButton.addEventListener('click', clear);
+resetButton.addEventListener('click', reset);
 shadeToggle.addEventListener('change', toggleShade);
 colorToggle.addEventListener('change', toggleColor);
-//colorToggle.checked = false;
 
-pixels = document.querySelectorAll('.pixel');
-pixels.forEach(pixel => pixel.addEventListener('mouseover', pixelHovered));
 
-// document.addEventListener('mousedown', toggleMouseDown)
-// document.addEventListener('mouseup', toggleMouseDown)
+function reset(){
+  if (sizeField.value != size) size = sizeField.value;
 
-function clear(){
-  console.log('clear');
+  canvas.style.gridTemplateColumns = "repeat(" + size + ", auto)";
+  canvas.style.gridTemplateRows = "repeat(" + size + ", auto)";
+
+  pixels.forEach(pixel => pixel.parentNode.removeChild(pixel));
+
+  for (let i = 0; i < size; i++){
+    for (let j = 0; j < size; j++){
+      let square = document.createElement('div');
+      square.className = 'pixel';
+      square.style.height = square.style.width;
+      canvas.appendChild(square);
+    }
+  }
+
+  pixels = document.querySelectorAll('.pixel');
+  pixels.forEach(pixel => pixel.addEventListener('mouseover', pixelHovered));
+
   pixels.forEach(pixel => pixel.style.background = "none");
 }
 
 function pixelHovered(e){
-  console.log(e);
   if (randomColors){
     let new_color = getRandomColor();
     e.target.style.background = new_color;

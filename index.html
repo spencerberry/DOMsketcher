@@ -12,26 +12,27 @@
     <header>
       <h1>Draw as you please.</h1>
     </header>
-    <!-- <div id="box"> -->
     <div id="canvas"> </div>
-    <!-- </div> -->
-    <div class="controls">
-        <button id="clear">clear</button>
-        <div>
-          <span class="control-label">shades:</span>
-          <label class="toggle" id="shade-toggle">
-            <input type="checkbox">
-            <span class="slider"></span>
-          </label>
-        </div>
-        <div>
-          <span class="control-label">
-          colors:</span>
-          <label class="toggle" id="color-toggle">
-            <input type="checkbox">
-            <span class="slider"></span>
-          </label>
-        </div>
+    <div class="control shade">
+      <span class="control-label">shades:</span>
+      <label class="toggle" id="shade-toggle">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="control colors">
+      <span class="control-label">colors:</span>
+      <label class="toggle" id="color-toggle">
+        <input type="checkbox">
+        <span class="slider"></span>
+      </label>
+    </div>
+    <div class="control size">
+      <span class="control-label">size:</span>
+      <input type="number" id="size" max="96" min="2">
+    </div>
+    <div class="control reset">
+      <button id="reset">reset</button>
     </div>
     <footer>
       <div id="credits">

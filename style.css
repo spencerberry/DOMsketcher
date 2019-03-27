@@ -1,8 +1,12 @@
 body{
   background-color: #1D102F;
   color: #F4EDDB;
-  height: 100%;
+  display: grid;
   font-family: 'Nunito', sans-serif;
+  grid-template-columns: auto repeat(4, 15vw) auto;
+  grid-template-rows: auto 60vw auto auto;
+  height: 100%;
+
 }
 
 body *{
@@ -14,23 +18,19 @@ a{
 }
 
 header{
+  grid-column-start: 2;
+  grid-column-end: 6;
   height: 3em;
 }
 
 header h1{
-  width: 80%;
   margin: auto;
 }
 
 #canvas {
+  grid-column-start: 2;
+  grid-column-end: 6;
   cursor: crosshair;
-  height: 60vw;
-  width: 60vw;
-  margin: 4em auto 0;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
   background-color: #766073;
   display: grid;
   grid-template-columns: 100%;
@@ -39,24 +39,49 @@ header h1{
   /* grid-template-columns: repeat(128, 1fr); */
 }
 
-.controls{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  width: 60%;
-  margin: 1em auto;
+.control{
+  padding-top: .4em;
 }
 
-.pixel{
+.control-label{
+  font-size: 18px;
+  padding-top: 4px;
+  margin: 0 10px;
+  vertical-align: middle;
   width: 100%;
-  /* min-height: 20px; */
-  overflow: auto;
-  display: block;
-  /*background-color: #F4EDDB;*/
 }
 
-/* .pixel:hover{
-  background-color: gray;
-} */
+.shade{
+  grid-column-start:2;
+  grid-column-end: 3;
+}
+
+.colors{
+  grid-column-start:3;
+  grid-column-end: 4;
+}
+
+.size{
+  grid-column-start:4;
+  grid-column-end: 5;
+}
+
+#size{
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border: 2px solid #6D758F;
+  background-color:  #1D102F;
+  color: #F4EDDB;
+  height: 24.5px;
+  width: 40px;
+  font-size: 16px;
+  transform: scale(2) translate(20%, 25%);
+}
+
+.reset{
+  grid-column-start: 5;
+  grid-column-end: 6;
+}
 
 button{
   appearance: none;
@@ -84,13 +109,6 @@ button:active{
   box-shadow: 0px 2px #6D758F;
   margin-top: 4px;
   padding-bottom: 4px; */
-}
-
-.control-label{
-  font-size: 26px;
-  padding-top: 4px;
-  margin: 0 10px;
-  vertical-align: middle;
 }
 
 .toggle{
@@ -147,17 +165,20 @@ input:checked + .slider:before{
 }
 
 footer{
+  grid-column-start: 2;
+  grid-column-end: 6;
+  grid-row-start: 4;
   display: block;
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
+  text-align: center;
+  padding-top: 10px;
+  /* left: 50%;
   transform: translateX(-50%);
-  z-index: -100;
+  z-index: -100; */
 
   /* width: 100%;
   bottom: 0; */
 }
 footer #credits{
-  text-align: center;
+  text-align: right;
   font-size: .8em;
 }
